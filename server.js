@@ -11,8 +11,10 @@ app.post('/echo', (req, res) => {
     const contentType = req.headers['content-type'] || 'text/plain';
     // Set the response content type to match the request's content type
     res.set('Content-Type', contentType);
+    // Handles empty body case by sending an empty response
+    const body = req.body && req.body.length ? req.body : '';
     // send back the received data as the response
-    res.send(req.body);
+    res.send(body);
 });
 
 // Default route for GET requests to the root URL
